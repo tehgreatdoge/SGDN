@@ -27,7 +27,8 @@ Requests are served via rednet on the protocol "SGDN". All implementations must 
 ```
 - version: 1, The current version
 - direction: "client", Specifies that this is clientbound
-- gates: [ Stargate ], An array of stargates
+- gates: [ Stargate ], An array of stargates, can
+be nil if there were incompatible versions
 ## Stargate
 ```json
 {

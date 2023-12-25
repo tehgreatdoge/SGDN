@@ -54,13 +54,22 @@ while true do
     -- Wait for the next message on the SGDN protocol
     local id, message = rednet.receive("SGDN")
     -- If the message is on the right version and is serverbound
-    if message and message.version == 1 and message.direction == "server" then
+    if message and message.direction == "server" then
         logQuery(id,message)    -- update output
-        -- Respond with a list of gates under this server
-        rednet.send(id, {
-            version = 1,
-            direction = "client",
-            gates = gates
-        }, "SGDN")
+        if message.version == 1 then
+            -- Respond with a list of gates under this server
+            rednet.send(id, {
+                version = 1,
+                direction = "client",
+                gates = gates
+            }, "SGDN")
+        else
+            --If the version isn't supported
+            -- Respond with the server's version
+            rednet.send(id, {
+                version = 1,
+                direction = "client"
+            }, "SGDN")
+        end
     end
 end
