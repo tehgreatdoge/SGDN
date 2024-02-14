@@ -8,7 +8,7 @@ Requests are served via rednet on the protocol "SGDN". All implementations must 
 }
 ```
 - version: 1, The current version
-- direction: "client", Specifies that this is serverbound
+- direction: "server", Specifies that this is serverbound
 ## Response
 ```json
 {
